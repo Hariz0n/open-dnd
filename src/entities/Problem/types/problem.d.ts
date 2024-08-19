@@ -11,10 +11,11 @@ declare global {
 
     export interface Dropzone {
       imageSrc: string;
-      areas?: Area[];
+      areas: Area[];
     }
 
     export interface Area {
+      id: string;
       x: Size;
       y: Size;
       height: Size;
@@ -22,13 +23,20 @@ declare global {
     }
 
     export interface Variant {
+      id: string;
       chipChar: string;
       chipTitle: string;
       text: string;
+    }
+
+    export interface Answer {
+      [key: string]: Pick<Problem.Variant, 'id' | 'chipChar'> | null;
     }
   }
 
   interface Window {
     problem: Problem.Config;
+    getState: () => string;
+    setState: (json: string) => void;
   }
 }

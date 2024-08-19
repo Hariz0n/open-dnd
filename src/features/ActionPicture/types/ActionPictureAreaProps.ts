@@ -1,1 +1,1 @@
-export type ActionPictureAreaProps = Problem.Area
+export type ActionPictureAreaProps = Problem.Area;

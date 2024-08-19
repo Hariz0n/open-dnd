@@ -1,16 +1,35 @@
 import { CSSProperties, FC } from "react";
 import { ActionPictureAreaProps } from "../types/ActionPictureAreaProps";
-import { Badge } from "@/shared";
+import { useDroppable } from "@dnd-kit/core";
+import { ProblemDraggable } from "@/entities/Problem";
+import { useAnswerContext } from "@/entities/Answer";
 
-export const ActionPictureArea: FC<ActionPictureAreaProps> = ({x, y, width, height}) => {
+export const ActionPictureArea: FC<ActionPictureAreaProps> = ({
+  id,
+  x,
+  y,
+  width,
+  height,
+}) => {
   const style = {
     top: x,
     left: y,
     width,
-    height
+    height,
   } satisfies CSSProperties;
 
-  return <div className="absolute border-2 bg-white/20 rounded-xl border-dashed" style={style} >
-    <Badge variant='shadow'>1</Badge>
-  </div>;
+  const { setNodeRef } = useDroppable({ id });
+  const { answer } = useAnswerContext();
+
+  return (
+    <div
+      ref={setNodeRef}
+      className="absolute border-2 bg-white/20 rounded-xl border-dashed p-2"
+      style={style}
+    >
+      {answer[id] && (
+        <ProblemDraggable id={answer[id].id} chipChar={answer[id].chipChar} />
+      )}
+    </div>
+  );
 };

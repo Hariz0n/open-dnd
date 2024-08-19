@@ -1,0 +1,1 @@
+export type ProblemDraggableProps = Pick<Problem.Variant, 'chipChar' | 'id'>;
