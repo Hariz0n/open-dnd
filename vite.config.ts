@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const taskName = env.TASK_NAME;
   const openeduUrl = env.OPENEDU_URL;
+  console.log(taskName, openeduUrl)
 
   return {
     plugins: [
@@ -22,8 +23,8 @@ export default defineConfig(({ mode }) => {
 
             let result = htmlString;
             result = result.replace('/open-dnd.js', openeduUrl + 'open-dnd.js')
-            result = result.replace('/initConfig.js', openeduUrl + taskName + '.js')
             result = result.replace('/open-dnd.css', openeduUrl + 'open-dnd.css')
+            result = result.replace('/src/app/initConfig.ts', openeduUrl + taskName + '.js')
             return result
           },
         },
