@@ -11,11 +11,15 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'es6',
     rollupOptions: {
-      input: ["index.html", "src/app/initConfig.ts"],
+      input: {
+        'open-dnd': 'index.html',
+        initConfig: 'src/app/initConfig.ts'
+      },
       output: {
-        assetFileNames: "[name][extname]",
         entryFileNames: "[name].js",
+        assetFileNames: "[name][extname]"
       },
     },
   },
