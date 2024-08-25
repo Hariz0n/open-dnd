@@ -24,7 +24,7 @@ export const ActionPictureArea: FC<ActionPictureAreaProps> = ({
   return (
     <div
       ref={setNodeRef}
-      className="absolute border-2 bg-white/20 rounded-xl border-dashed p-2"
+      className="absolute border-2 border-our-blue bg-our-blue/20 rounded-xl border-dashed p-2"
       style={style}
     >
       {answer[id] && (

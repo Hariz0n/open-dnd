@@ -10,6 +10,7 @@ import {
 } from "@dnd-kit/core";
 import { Badge } from "@/shared";
 import { useAnswerContext } from "@/entities/Answer";
+import { restrictToWindowEdges } from "@dnd-kit/modifiers";
 
 export const Action: FC<ActionProps> = ({ dropzone, variants }) => {
   const { answer, setAnswer } = useAnswerContext();
@@ -79,9 +80,9 @@ export const Action: FC<ActionProps> = ({ dropzone, variants }) => {
 
   return (
     <section className="flex flex-col gap-8">
-      <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+      <DndContext modifiers={[restrictToWindowEdges]} onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <ActionPicture {...dropzone} />
-        <ul>
+        <ul className="flex flex-col gap-4">
           {variants.map((variant) => (
             <ActionVariant
               key={variant.chipTitle + variant.text}
